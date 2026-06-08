@@ -5,7 +5,7 @@ Convert a flat 192.168.100.0/24 network into a segmented business layout with
 VLAN isolation, inter-VLAN routing, DHCP automation, and ACL-based Guest network lockdown.
 
 ## Topology
-![Network Topology](topology.png)
+![Network Topology](./images/topology.png)
 
 ## IP Addressing Table (VLSM)
 
