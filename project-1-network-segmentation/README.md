@@ -4,7 +4,8 @@
 Convert a flat 192.168.100.0/24 network into a segmented business layout with 
 VLAN isolation, inter-VLAN routing, DHCP automation, and ACL-based Guest network lockdown.
 
----
+## Topology
+![Network Topology](topology.png)
 
 ## IP Addressing Table (VLSM)
 
@@ -118,31 +119,31 @@ clear ip access-list counters
 
 ## What I learned
 Before this project I had no idea how VLANs actually worked. I learned how to create 
-them on a switch, then assign specific ports to specific VLANs — so only authorised 
+them on a switch, then assign specific ports to specific VLANs so that only authorised 
 devices in that department get access. Then I learned why a trunk port is needed 
-between the switch and router — because traffic from multiple VLANs needs to travel 
+between the switch and router which is because traffic from multiple VLANs needs to travel 
 down that one cable, so it carries all of them tagged.
 
 The Router-on-a-Stick concept clicked when I understood that a real router has limited 
 physical interfaces, so instead of needing one port per VLAN you virtually slice that 
-one interface into sub-interfaces — and each sub-interface only lets its own VLAN 
+one interface into sub-interfaces and each sub-interface only lets its own VLAN 
 traffic through based on the 802.1Q tag.
 
-DHCP pooling was straightforward once the subnets were set — you just point each pool 
+DHCP pooling was straightforward once the subnets were set we can just point each pool 
 at the right network and the router hands out IPs automatically to whatever host joins 
 that VLAN. No manual configuration needed on the PCs.
 
-For the ACL firewall I deployed it on sub-interface gi0/0.30 inbound — meaning any 
+For the ACL firewall I deployed it on sub-interface gi0/0.30 inbound, meaning any 
 traffic coming FROM the Guest network gets filtered right at the entry point. It blocks 
 Guest from reaching HR or Engineering, and also blocks SSH and Telnet so Guest users 
 can't try to attack the gateway.
 
 ## Biggest challenge
 The hardest part was wrapping my head around how a packet actually travels through 
-the trunk. Like — a PC in HR sends data, the switch tags it with VLAN 10, it goes up 
+the trunk. Like a PC in HR sends data, the switch tags it with VLAN 10, it goes up 
 the trunk cable to the router, the router receives it on sub-interface gi0/0.10 because 
 that sub-interface is configured for dot1Q tag 10, routes it, then sends it back DOWN 
 the trunk tagged for the destination VLAN, and the switch reads that tag and forwards 
 it to the correct port. Once I visualised that full journey in my head it finally made 
-sense — the tag is basically the packet's label that tells every device which VLAN it 
+sense that the tag is basically the packet's label that tells every device which VLAN it 
 belongs to at every step.
