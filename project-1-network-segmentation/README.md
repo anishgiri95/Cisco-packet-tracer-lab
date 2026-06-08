@@ -147,3 +147,6 @@ the trunk tagged for the destination VLAN, and the switch reads that tag and for
 it to the correct port. Once I visualised that full journey in my head it finally made 
 sense that the tag is basically the packet's label that tells every device which VLAN it 
 belongs to at every step.
+
+
+[def]: ./images/topology.png
