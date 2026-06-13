@@ -1,5 +1,5 @@
 Project 2 — Switch Layer Hardening & Secure Administration
-
+![Network Topology](Topology_project.png)
 ## Objective
 Lock down physical switch access by disabling unused ports, preventing unauthorized 
 device connections using sticky MAC port security, and replacing plaintext Telnet 
@@ -12,7 +12,7 @@ Project 1 left the network functional but physically vulnerable — empty ports 
 open doors and admin traffic was sent in plain text over Telnet. Project 2 fixes both.
 
 ---
-![Network Topology](Topology_project.png)
+
 ## Part 1 — BlackHole VLAN + Unused Port Shutdown
 
 Created VLAN 99 as a dead end — no sub-interface on router, no DHCP pool, no routing.
