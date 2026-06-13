@@ -5,7 +5,7 @@ Convert a flat 192.168.100.0/24 network into a segmented business layout with
 VLAN isolation, inter-VLAN routing, DHCP automation, and ACL-based Guest network lockdown.
 
 ## Topology
-![Network Topology](./Images/topology.png)
+![Network Topology](./Images/Topology_project.png)
 
 ## IP Addressing Table (VLSM)
 
@@ -149,4 +149,4 @@ sense that the tag is basically the packet's label that tells every device which
 belongs to at every step.
 
 
-[def]: ./images/topology.png
+[def]: ./images/Topology_project.png
