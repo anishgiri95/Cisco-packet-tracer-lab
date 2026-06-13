@@ -27,15 +27,15 @@ vlan 20
 vlan 30
  name Guest_WiFi
 
-interface fa0/10
+interface range fa0/1 - fa0/3
  switchport mode access
  switchport access vlan 10
 
-interface fa0/15
+interface range fa0/4 - fa0/6
  switchport mode access
  switchport access vlan 20
 
-interface fa0/20
+interface range fa0/7 - fa0/8
  switchport mode access
  switchport access vlan 30
 
